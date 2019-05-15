@@ -9,8 +9,8 @@ p_load(tidyverse, sjPlot, stargazer, survey)
 if(!require(gt)) remotes::install_github("rstudio/gt"); require(gt)
 
 # Raw Data ----------------------------------------------------------------
-survey <- read_csv("C://users//jmiller//Desktop//surv//survey1_clean.csv")
-saveRDS(survey, "C://users//jmiller//Desktop//surv//survey.RDS")
+survey <- read_csv("survey1_clean.csv")
+saveRDS(survey, "survey.RDS")
 
 
 # Feature Engineering -----------------------------------------------------
