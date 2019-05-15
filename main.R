@@ -24,18 +24,19 @@ survey.summary <- data.frame(
   Q4_gov              = ifelse(survey$q4 == "Government", 1, 0),
   Q4_edu              = ifelse(survey$q4 == "Higher Education", 1, 0),
   Q4_NA               = ifelse(survey$q4 == "N/A or I don't know", 1, 0),
-  Current_Region_East_North_Central = ifelse(survey$Region == "East North Central",1,0),
-  Current_Region_East_South_Central = ifelse(survey$Region == "East South Central",1,0),
-  Current_Region_Middel_Atlantic = ifelse(survey$Region    == "Middle Atlantic",1,0),
-  Current_Region_Mountain = ifelse(survey$Region           == "Mountain",1,0),
-  Current_Region_New_England = ifelse(survey$Region        == "New England",1,0),
-  Current_Region_Pacific = ifelse(survey$Region            == "Pacific",1,0),
-  Current_Region_South_Atlantic = ifelse(survey$Region     == "South Atlantic",1,0),
-  Current_Region_West_North_Central = ifelse(survey$Region == "West North Central",1,0),
-  Current_Region_West_South = ifelse(survey$Region         == "West South Central",1,0),
+  Current_Region_East_North_Central = ifelse(!is.na(survey$Region) & survey$Region == "East North Central",1,0),
+  Current_Region_East_South_Central = ifelse(!is.na(survey$Region) & survey$Region == "East South Central",1,0),
+  Current_Region_Middel_Atlantic = ifelse(!is.na(survey$Region) & survey$Region    == "Middle Atlantic",1,0),
+  Current_Region_Mountain = ifelse(!is.na(survey$Region) & survey$Region           == "Mountain",1,0),
+  Current_Region_New_England = ifelse(!is.na(survey$Region) & survey$Region        == "New England",1,0),
+  Current_Region_Pacific = ifelse(!is.na(survey$Region) & survey$Region            == "Pacific",1,0),
+  Current_Region_South_Atlantic = ifelse(!is.na(survey$Region) & survey$Region     == "South Atlantic",1,0),
+  Current_Region_West_North_Central = ifelse(!is.na(survey$Region) & survey$Region == "West North Central",1,0),
+  Current_Region_West_South = ifelse(!is.na(survey$Region) & survey$Region         == "West South Central",1,0),
   Gender_Female = ifelse(!survey$Gender=="Male",1 , 0),
   Gender_Male = ifelse(survey$Gender=="Male",1 , 0)
 )
+
 
 stargazer(survey.summary, 'html')
 
