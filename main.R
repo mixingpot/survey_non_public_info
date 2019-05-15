@@ -6,8 +6,6 @@
 require(pacman)
 p_load(tidyverse, sjPlot, stargazer, survey)
 
-if(!require(gt)) remotes::install_github("rstudio/gt"); require(gt)
-
 # Raw Data ----------------------------------------------------------------
 survey <- read_csv("survey1_clean.csv")
 saveRDS(survey, "survey.RDS")
@@ -40,7 +38,7 @@ survey.summary <- data.frame(
 
 stargazer(survey.summary, 'html')
 
-saveRDS(survey.summary, "C://users//jmiller//Desktop//surv//survey.summary.RDS") # write out (for .Rmd)
+saveRDS(survey.summary, "survey.summary.RDS") # write out (for .Rmd)
 
 
 # EDA ---------------------------------------------------------------------
