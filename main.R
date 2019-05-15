@@ -95,17 +95,22 @@ prop.table(table(survey$q3))
 table(survey$q4)
 prop.table(table(survey$q4))
 
-
 # Sample Weighting --------------------------------------------------------
-# Working Area (not complete)
+# Unweighted Survey (raw)
+data.svy.unweighted <- svydesign(ids=~1, data=survey.summary)
 
-library(survey)
+# U.S., 18+ Population Age (marginal probabilities)
+gender.dist <- data.frame(Gender = c("Male", "Female"),
+                          Freq = nrow(data) * c(0.492, 0.508))
 
-data.svy.unweighted <- svydesign(ids=~1, data=survey)
-data.svy.rake.trim  <- trimWeights(survey, lower=0.3, upper=3,
+# Raking of replicate weights
+data.svy.rake <- rake(design = data.svy.unweighted,
+                      sample.margins = list(~Gender),
+                      population.margins = list(gender.dist))
+
+data.svy.rake.trim  <- trimWeights(data.svy.rake, lower=0.3, upper=3,
                                   strict=TRUE)
 
-svymean(data, data.svy.rake.trim)
+svymean(survey.summary, data.svy.rake.trim)
 
-
-
+saveRDS(survey.summary, "survey.summary.RDS") # For .Rmd latex table
