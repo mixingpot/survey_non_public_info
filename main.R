@@ -32,8 +32,7 @@ survey.summary <- data.frame(
   Current_Region_Pacific = ifelse(survey$Region            == "Pacific",1,0),
   Current_Region_South_Atlantic = ifelse(survey$Region     == "South Atlantic",1,0),
   Current_Region_West_North_Central = ifelse(survey$Region == "West North Central",1,0),
-  Current_Region_West_South = ifelse(survey$Region         == "West South Central",1,0),
-  Current_Region_Pacific = ifelse(survey$Region            == "Pacific",1,0)
+  Current_Region_West_South = ifelse(survey$Region         == "West South Central",1,0)
 )
 
 stargazer(survey.summary, 'html')
